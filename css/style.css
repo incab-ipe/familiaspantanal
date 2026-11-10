@@ -2446,3 +2446,66 @@ h1, h2, h3, h4, h5, h6, .intro-title, .person-title, .person-story, .about-modal
   .tab { font-size: 7px; letter-spacing: .07em; }
   .main-area { padding-inline: 10px; }
 }
+
+/* Podcast control in the compact header ----------------------------------- */
+@media (max-width: 700px) {
+  .app-header {
+    grid-template-areas:
+      "brand podcast about"
+      "tabs tabs tabs";
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0 7px;
+  }
+
+  .podcast-button {
+    grid-area: podcast;
+    align-self: center;
+    min-height: 32px;
+    padding: 0 8px;
+    gap: 5px;
+    font-size: 8px;
+    letter-spacing: .08em;
+  }
+
+  .podcast-button svg { width: 14px; height: 14px; }
+}
+
+@media (max-width: 380px) {
+  .podcast-button { padding-inline: 6px; font-size: 7px; }
+  .podcast-button svg { width: 13px; height: 13px; }
+}
+
+/* Podcast button ------------------------------------------------------------ */
+.app-header { grid-template-columns: auto minmax(120px, 1fr) auto auto auto; }
+.podcast-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid rgba(184, 180, 123, 0.48);
+  border-radius: 4px;
+  color: var(--ink-soft);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+.podcast-button svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.6;
+}
+.podcast-button:hover {
+  border-color: var(--olive-gold);
+  background: rgba(184, 180, 123, 0.1);
+  color: var(--olive-light);
+}
+@media (max-width: 1060px) and (min-width: 701px) {
+  .app-header { grid-template-columns: auto minmax(0, 1fr) auto auto auto; gap: 14px; }
+}

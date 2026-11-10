@@ -3,9 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0;url=./site/">
-  <title>PANTANAL — Uma Saga Antológica</title>
-  <style>body{background:#151715;color:#ece9df;font-family:Roboto,system-ui,sans-serif;padding:3rem}a{color:#ef4933}</style>
+  <meta name="theme-color" content="#151715">
+  <meta name="description" content="PANTANAL — UMA SAGA ANTOLÓGICA. Navegue pela árvore genealógica das antas da Fazenda Baía das Pedras.">
+  <title>PANTANAL — UMA SAGA ANTOLÓGICA</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
-<body><p><a href="./site/">Abrir PANTANAL — UMA SAGA ANTOLÓGICA</a></p></body>
+<body>
+  <header class="app-header">
+    <a class="brand" href="./" aria-label="Pantanal — início">
+      <img class="brand-mark brand-logo" src="./assets/pantanal-logo-transparent.webp" alt="Logo Pantanal — Uma Saga Antológica">
+      <span class="brand-word">PANTANAL<small>UMA SAGA ANTOLÓGICA</small></span>
+    </a>
+    <span class="header-subtitle">Todos os caminhos se cruzam.</span>
+    <nav class="tabs" aria-label="Visualizações">
+      <button class="tab active" data-tab="network" aria-current="page">A rede</button>
+      <button class="tab" data-tab="characters">Personagens</button>
+      <button class="tab" data-tab="story">A novela</button>
+    </nav>
+    <button class="about-button" id="about-button" aria-label="Sobre os dados e o projeto"><span aria-hidden="true">ⓘ</span> <span>Sobre</span></button>
+  </header>
+  <div class="workspace">
+    <aside class="sidebar" aria-label="Núcleos familiares">
+      <img class="sidebar-forest" src="./assets/forest.webp" alt="" aria-hidden="true">
+      <div class="sidebar-inner">
+        <div class="eyebrow">PANTANAL · UMA SAGA ANTOLÓGICA</div>
+        <h2 class="intro-title">Um enredo.<br>Muitos laços.</h2>
+        <p class="intro-copy">Uma árvore genealógica para navegar pelas histórias da Fazenda Baía das Pedras.</p>
+        <div class="sidebar-rule"></div>
+        <div class="stat-pair"><div class="stat"><strong id="count-individuals">—</strong><span>indivíduos</span></div><div class="stat"><strong id="count-generations">—</strong><span>gerações</span></div></div>
+        <div class="chapter-label">EXPLORE UM NÚCLEO</div>
+        <nav class="family-nav" id="family-nav" aria-label="Filtrar por núcleo familiar"></nav>
+        <div class="sidebar-bottom"><span class="source-tag"><span aria-hidden="true">↳</span> BASEADO EM REGISTROS</span><p class="source-note">Cada linha é um vínculo.<br>Cada círculo, uma história.</p></div>
+      </div>
+    </aside>
+    <main class="main-area" id="main">
+      <div class="page-heading">
+        <div class="heading-copy"><div class="eyebrow" id="view-kicker">A GENEALOGIA</div><h1 id="view-title">Uma família nada convencional.</h1><p id="view-description">Siga os laços. Descubra quem se conecta a quem.</p></div>
+        <div class="species-tag"><span class="species-dot"></span><div><em>Tapirus terrestris</em><small>ANTA-BRASILEIRA</small></div></div>
+      </div>
+      <section class="view-panel" id="network-view" aria-label="Rede genealógica interativa">
+        <div class="graph-toolbar">
+          <div class="search-container" style="position:relative">
+            <label class="search-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only">Buscar indivíduo</span><input id="search" type="search" placeholder="Encontre um indivíduo…" autocomplete="off" aria-controls="search-results" aria-expanded="false"></label>
+            <div class="search-results" id="search-results" hidden></div>
+          </div>
+          <div class="filter-group" aria-label="Mostrar relações"><button class="filter-chip active" data-filter="parent" aria-pressed="true">Genitores e filhotes</button><button class="filter-chip" data-filter="sibling" aria-pressed="false">Irmãos</button><button class="filter-chip" data-filter="half" aria-pressed="false">Meio-irmãos</button></div>
+          <button class="icon-button fit-button" id="fit" aria-label="Enquadrar toda a rede" title="Enquadrar rede"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        </div>
+        <div class="network-shell" id="network-shell">
+          <svg class="graph-canvas" id="graph" aria-label="Rede de indivíduos. Use a busca ou clique nos círculos para explorar." role="group"><g id="graph-world"><g id="graph-edges"></g><g id="graph-nodes"></g></g></svg>
+          <div class="graph-status" id="graph-status">Preparando a rede…</div>
+          <div class="graph-hint"><span aria-hidden="true">↔</span> Arraste para explorar · Clique para destacar conexões</div>
+          <div class="graph-tools"><button class="icon-button" id="zoom-out" aria-label="Diminuir zoom">−</button><span class="zoom-readout" id="zoom-value">100%</span><button class="icon-button" id="zoom-in" aria-label="Aumentar zoom">+</button></div>
+        </div>
+        <div class="legend" aria-label="Legenda de relações"><span class="legend-item"><i class="legend-line parent"></i>Genitores → filhote</span><span class="legend-item"><i class="legend-line partner"></i>Parceria registrada</span><span class="legend-item"><i class="legend-line sibling"></i>Irmãos</span><span class="legend-item"><i class="legend-line half"></i>Meio-irmãos</span><span class="legend-item legend-note">Rita, Justine, Duda e Wie · fêmeas principais</span></div>
+      </section>
+      <section class="view-panel" id="characters-view" aria-label="Personagens" hidden><div class="character-toolbar"><div><div class="eyebrow">FICHAS INDIVIDUAIS</div><p class="character-helper">Aqui você encontra a foto e os vínculos registrados.</p></div><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Filtrar personagens</span><input id="character-search" type="search" placeholder="Buscar personagem…"></label><span id="character-count"></span></div><div class="characters-grid" id="characters-grid"></div></section>
+      <section class="view-panel" id="story-view" aria-label="A novela genealógica" hidden><p class="story-introduction">Antas no Pantanal mudaram a ciência. Esta é uma prévia da história que será contada no podcast <strong>PANTANAL – UMA SAGA ANTOLÓGICA</strong>.</p><div class="stories-layout" id="stories"></div></section>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="person-dialog" hidden><section class="person-modal" role="dialog" aria-modal="true" aria-labelledby="person-name" tabindex="-1"><button class="icon-button modal-close" data-close aria-label="Fechar ficha">×</button><div id="person-content"></div></section></div>
+      <div class="modal-backdrop" id="about-dialog" hidden><section class="about-modal" role="dialog" aria-modal="true" aria-labelledby="about-title" tabindex="-1"><button class="icon-button modal-close" data-close aria-label="Fechar informações">×</button><div class="about-content"><div class="eyebrow">SOBRE PANTANAL</div><h2 id="about-title">Uma saga que mudou a ciência.</h2><p>Antas no Pantanal mudaram a ciência e essa história será contada no podcast <strong>PANTANAL – UMA SAGA ANTOLÓGICA</strong>. O podcast é uma realização da Iniciativa Nacional para a Conservação da Anta Brasileira (INCAB-IPÊ) e narra a história das antas que vivem na Fazenda Baía das Pedras, Pantanal da Nhecolândia, Mato Grosso do Sul.</p><p>Por muitos anos, acreditava-se que a anta era uma espécie monogâmica. No entanto, estudos de longo prazo realizados na Fazenda Baía das Pedras revelaram que a espécie é, na verdade, poligâmica. Essa descoberta transformou a pesquisa científica sobre as antas ao alterar profundamente a compreensão da organização social de uma espécie considerada Vulnerável à Extinção.</p><p>No meio de tantos indivíduos e gerações, as coisas podem ficar confusas, por isso preparamos essa árvore genealógica para você navegar.</p><figure class="identity-figure"><img src="./assets/pantanal-logo-transparent.webp" alt="Logo Pantanal — Uma Saga Antológica"><figcaption>Identidade visual · PANTANAL — UMA SAGA ANTOLÓGICA</figcaption></figure><p>Esta árvore organiza os vínculos registrados em <strong>dados.docx</strong>. Irmãos compartilham os dois genitores registrados; meio-irmãos compartilham apenas um. Os campos de sexo e pai/mãe permanecem desconhecidos quando não há confirmação.</p><div class="about-links"><button class="text-button" id="export-data">Baixar dados da rede ↓</button></div></div></section></div>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script type="module" src="./js/main.js"></script>
+</body>
 </html>
